@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroMaster Academy - VLSI & Electronics Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 18, 45, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.1"/><stop offset="100%" stop-color="%23764ba2" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="300" r="100" fill="url(%23a)"/><circle cx="800" cy="200" r="150" fill="url(%23a)"/><circle cx="600" cy="800" r="120" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        .btn-primary:hover {
+            transform: perspective(1000px) rotateX(-10deg) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Circuit Animation */
+        .circuit-bg {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; transform: translateY(-50%) scale(1); }
+            50% { opacity: 0.2; transform: translateY(-50%) scale(1.05); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 100px 0;
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .course-card p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .course-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .course-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .testimonial-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #667eea;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-info h3 {
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0c0c0c;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ElectroMaster</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#skills">Expertise</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Master Electronics & VLSI Design</h1>
+                <p>Expert instruction in VLSI, Signal Processing, and Advanced Electronics. Transform your career with industry-focused learning and hands-on projects.</p>
+                <div class="cta-buttons">
+                    <a href="#courses" class="btn btn-primary">Explore Courses</a>
+                    <a href="#contact" class="btn btn-secondary">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <div class="circuit-bg">
+            <svg width="400" height="400" viewBox="0 0 400 400">
+                <defs>
+                    <linearGradient id="circuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1" />
+                    </linearGradient>
+                </defs>
+                <path d="M50 50 L350 50 L350 350 L50 350 Z" fill="none" stroke="url(#circuitGrad)" stroke-width="2"/>
+                <circle cx="100" cy="100" r="20" fill="url(#circuitGrad)"/>
+                <circle cx="300" cy="100" r="20" fill="url(#circuitGrad)"/>
+                <circle cx="100" cy="300" r="20" fill="url(#circuitGrad)"/>
+                <circle cx="300" cy="300" r="20" fill="url(#circuitGrad)"/>
+                <path d="M100 100 L300 100 M200 100 L200 300 M100 300 L300 300" stroke="url(#circuitGrad)" stroke-width="1"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content animate-on-scroll">
+                <div class="about-text">
+                    <h2>Leading Electronics Education Expert</h2>
+                    <p>With over a decade of experience in electronics engineering and VLSI design, I specialize in making complex concepts accessible and practical for students and professionals alike.</p>
+                    <p>My teaching methodology combines theoretical foundations with hands-on laboratory work, ensuring students gain both conceptual understanding and practical skills that are immediately applicable in the industry.</p>
+                    <p>From basic circuit analysis to advanced VLSI design flows, I guide students through a comprehensive learning journey that prepares them for successful careers in electronics and semiconductor industries.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Students Taught</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Industry Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Course Offerings</h2>
+            <div class="courses-grid">
+                <div class="course-card animate-on-scroll">
+                    <div class="course-icon">🔬</div>
+                    <h3>VLSI Design Fundamentals</h3>
+                    <p>Comprehensive coverage of VLSI design principles, from basic MOS theory to advanced digital system design.</p>
+                    <ul class="course-features">
+                        <li>CMOS Technology & Fabrication</li>
+                        <li>Logic Design & Optimization</li>
+                        <li>Layout Design & DRC</li>
+                        <li>Timing Analysis & Verification</li>
+                        <li>Industry Standard Tools (Cadence, Synopsys)</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Learn More</a>
+                </div>
+
+                <div class="course-card animate-on-scroll">
+                    <div class="course-icon">📡</div>
+                    <h3>Signals & Systems</h3>
+                    <p>Master the mathematical foundations and practical applications of signal processing and system analysis.</p>
+                    <ul class="course-features">
+                        <li>Continuous & Discrete Time Systems</li>
+                        <li>Fourier Analysis & Transforms</li>
+                        <li>Laplace & Z-Transforms</li>
+                        <li>Filter Design & Implementation</li>
+                        <li>MATLAB/Simulink Applications</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Learn More</a>
+                </div>
+
+                <div class="course-card animate-on-scroll">
+                    <div class="course-icon">⚡</div>
+                    <h3>Advanced Electronics</h3>
+                    <p>Deep dive into analog and digital electronics with emphasis on real-world circuit design and analysis.</p>
+                    <ul class="course-features">
+                        <li>Operational Amplifier Circuits</li>
+                        <li>Power Electronics & Converters</li>
+                        <li>High-Frequency Circuit Design</li>
+                        <li>PCB Design & EMI/EMC</li>
+                        <li>Measurement & Instrumentation</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Learn More</a>
+                </div>
+
+                <div class="course-card animate-on-scroll">
+                    <div class="course-icon">💻</div>
+                    <h3>Digital System Design</h3>
+                    <p>From logic gates to complex digital systems, including FPGA programming and embedded systems.</p>
+                    <ul class="course-features">
+                        <li>HDL Programming (Verilog/VHDL)</li>
+                        <li>FPGA Design & Implementation</li>
+                        <li>Microprocessor Architecture</li>
+                        <li>Embedded System Design</li>
+                        <li>Real-time Operating Systems</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Learn More</a>
+                </div>
+
+                <div class="course-card animate-on-scroll">
+                    <div class="course-icon">🎯</div>
+                    <h3>Industry Project Training</h3>
+                    <p>Hands-on project-based learning with real industry problems and professional development tools.</p>
+                    <ul class="course-features">
+                        <li>End-to-end Project Development</li>
+                        <li>Industry Best Practices</li>
+                        <li>Team Collaboration Tools</li>
+                        <li>Professional Documentation</li>
+                        <li>Career Guidance & Mentoring</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Learn More</a>
+                </div>
+
+                <div class="course-card animate-on-scroll">
+                    <div class="course-icon">🚀</div>
+                    <h3>Advanced VLSI Topics</h3>
+                    <p>Cutting-edge VLSI concepts including low-power design, analog IC design, and emerging technologies.</p>
+                    <ul class="course-features">
+                        <li>Low Power Design Techniques</li>
+                        <li>Analog/Mixed-Signal IC Design</li>
+                        <li>Memory Design & Testing</li>
+                        <li>Advanced Process Technologies</li>
+                        <li>Design for Testability</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Areas of Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Circuit Design</h3>
+                    <p>Analog and digital circuit design with emphasis on practical implementation and optimization.</p>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">📊</div>
+                    <h3>Signal Processing</h3>
+                    <p>Digital signal processing algorithms, filter design, and real-time implementation techniques.</p>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">🎛️</div>
+                    <h3>System Integration</h3>
+                    <p>Integration of complex electronic systems with focus on performance and reliability.</p>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">🔍</div>
+                    <h3>Testing & Validation</h3>
+                    <p>Comprehensive testing methodologies and validation techniques for electronic systems.</p>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Design Automation</h3>
+                    <p>CAD tools, simulation software, and automated design flow implementation.</p>
+                </div>
+                <div class="skill-item animate-on-scroll">
+                    <div class="skill-icon">📚</div>
+                    <h3>Research & Development</h3>
+                    <p>Cutting-edge research in emerging technologies and innovative solution development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Student Success Stories</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-text">
+                        The VLSI course completely transformed my understanding of chip design. The hands-on approach with industry tools made all the difference in landing my dream job at a semiconductor company.
+                    </div>
+                    <div class="testimonial-author">- Sai Ganesh, VLSI Engineer</div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-text">
+                        Exceptional teaching methodology! The complex concepts of signal processing were explained with such clarity that I could immediately apply them in my research project.
+                    </div>
+                    <div class="testimonial-author">- Dokala Sai, PhD Student</div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-text">
+                        The project-based learning approach was incredible. I built a complete digital system from scratch and gained confidence to tackle real-world engineering challenges.
+                    </div>
+                    <div class="testimonial-author">- Sai Ganesh Dokala, Electronics Engineer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Start Your Learning Journey</h2>
+            <div class="contact-content">
+                <div class="contact-form animate-on-scroll">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course Interest</label>
+                            <input type="text" id="course" name="course" placeholder="Which course interests you?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell me about your learning goals..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info animate-on-scroll">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            electromaster@example.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>Phone</strong><br>
+                            +91 9502324560
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Location</strong><br>
+                            Vizag, Andhra Prades, India
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <strong>Availability</strong><br>
+                            Mon-Sat: 9:00 AM - 7:00 PM
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
+                        <h4 style="color: #667eea; margin-bottom: 1rem;">Why Choose ElectroMaster?</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #667eea;">✓</span>
+                                Industry-experienced instructor
+                            </li>
+                            <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #667eea;">✓</span>
+                                Hands-on practical approach
+                            </li>
+                            <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #667eea;">✓</span>
+                                Flexible scheduling options
+                            </li>
+                            <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #667eea;">✓</span>
+                                Career guidance included
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ElectroMaster Academy. Empowering the next generation of electronics engineers.</p>
+            <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.9rem;">
+                Specialized in VLSI Design | Signal Processing | Advanced Electronics
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(13, 18, 45, 0.98)';
+            } else {
+                header.style.background = 'rgba(13, 18, 45, 0.95)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const course = formData.get('course');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`Thank you ${name}! Your message has been received. I'll get back to you within 24 hours.`);
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Add floating particles animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: -1;
+                opacity: 0.3;
+                animation: float-particle 15s linear infinite;
+            `;
+            
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 15000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 3000);
+
+        // Add CSS for particle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float-particle {
+                from {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.3;
+                }
+                90% {
+                    opacity: 0.3;
+                }
+                to {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add typing effect to hero text
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            setTimeout(() => {
+                typeWriter(heroTitle, originalText, 100);
+            }, 1000);
+        });
+
+        // Add interactive hover effect to course cards
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) rotateX(5deg)';
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0deg)';
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation CSS
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+
+        // Add dynamic stats counter
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.innerHTML = end.toString().includes('+') ? current + '+' : 
+                                   end.toString().includes('%') ? current + '%' : current;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const text = statNumber.textContent;
+                    const number = parseInt(text.replace(/\D/g, ''));
+                    animateValue(statNumber, 0, number, 2000);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+    </script>
+</body>
+</html>
