@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElectroMaster Academy - VLSI & Electronics Expert</title>
+    <title>NyTutorr Academy - VLSI & Electronics Expert</title>
     <style>
+        @font-face {
+    font-family: 'queenside';
+    src: url('Queensides-3z7Ey.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+  @font-face {
+    font-family: 'queensidemedium';
+    src: url('QueensidesMedium-x30zV.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
         * {
             margin: 0;
             padding: 0;
@@ -12,7 +26,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'queensidemedium';
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
@@ -29,7 +43,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(13, 18, 45, 0.95);
+            background: rgb(33, 32, 32);
             backdrop-filter: blur(20px);
             z-index: 1000;
             transition: all 0.3s ease;
@@ -43,9 +57,10 @@
         }
 
         .logo {
+            font-family:'queenside' ;
             font-size: 1.8rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #b58ddd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -88,7 +103,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            background: #eee;
             display: flex;
             align-items: center;
             position: relative;
@@ -134,6 +149,7 @@
         }
 
         .hero p {
+            color:black;
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
@@ -182,7 +198,7 @@
 
         .btn-secondary {
             background: transparent;
-            color: white;
+          
             border: 2px solid #667eea;
         }
 
@@ -282,7 +298,7 @@
         /* Courses Section */
         .courses {
             padding: 100px 0;
-            background: #1a1a2e;
+            background: #eee;
             color: white;
         }
 
@@ -303,12 +319,23 @@
         }
 
         .course-card {
-            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+         
+/*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=ffb368&c2=f2b565&gt=l&gd=dtl
+*/
+/*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=fcee80&c2=e8e821&gt=l&gd=dtl
+*/
+background: #fdfdfd;
+/* background: linear-gradient(135deg, #FCEE80, #E8E821); */
             border-radius: 20px;
             padding: 2rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            color:#0c0c0c
         }
 
         .course-card::before {
@@ -371,8 +398,8 @@
         /* Skills Section */
         .skills {
             padding: 100px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #c3cfe2;
+            
         }
 
         .skills-grid {
@@ -382,7 +409,7 @@
         }
 
         .skill-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: whitesmoke;
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2rem;
@@ -392,7 +419,7 @@
 
         .skill-item:hover {
             transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(76, 193, 239, 0.2);
         }
 
         .skill-icon {
@@ -454,8 +481,8 @@
         /* Contact Section */
         .contact {
             padding: 100px 0;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
-            color: white;
+            background: white;
+            color: black;
         }
 
         .contact-content {
@@ -465,10 +492,11 @@
         }
 
         .contact-form {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(197, 180, 180, 0.1);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 20px;
+            color: #0c0c0c;
         }
 
         .form-group {
@@ -478,7 +506,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #667eea;
+            /* color: #667eea; */
         }
 
         .form-group input,
@@ -486,19 +514,19 @@
             width: 100%;
             padding: 1rem;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(8, 8, 8, 0.2);
             border-radius: 10px;
-            color: white;
+            /* color: white; */
             font-size: 1rem;
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: black
         }
 
         .contact-info h3 {
-            color: #667eea;
+            /* color: #667eea; */
             margin-bottom: 2rem;
         }
 
@@ -574,7 +602,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">ElectroMaster</div>
+            <div class="logo">NyTutorr</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -789,13 +817,13 @@
                     <div class="testimonial-text">
                         Exceptional teaching methodology! The complex concepts of signal processing were explained with such clarity that I could immediately apply them in my research project.
                     </div>
-                    <div class="testimonial-author">- Dokala Sai, PhD Student</div>
+                    <div class="testimonial-author">- Abdul Md, PhD Student</div>
                 </div>
                 <div class="testimonial-card animate-on-scroll">
                     <div class="testimonial-text">
                         The project-based learning approach was incredible. I built a complete digital system from scratch and gained confidence to tackle real-world engineering challenges.
                     </div>
-                    <div class="testimonial-author">- Sai Ganesh Dokala, Electronics Engineer</div>
+                    <div class="testimonial-author">- Conrad Ulrich, Electronics Engineer</div>
                 </div>
             </div>
         </div>
@@ -832,7 +860,7 @@
                         <div class="contact-icon">📧</div>
                         <div>
                             <strong>Email</strong><br>
-                            electromaster@example.com
+                            hemaprasanthnaidu@gmail.com
                         </div>
                     </div>
                     <div class="contact-item">
@@ -857,7 +885,7 @@
                         </div>
                     </div>
                     <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
-                        <h4 style="color: #667eea; margin-bottom: 1rem;">Why Choose ElectroMaster?</h4>
+                        <h4 style="color: #667eea; margin-bottom: 1rem;">Why Choose NyTutorr?</h4>
                         <ul style="list-style: none; padding: 0;">
                             <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
                                 <span style="position: absolute; left: 0; color: #667eea;">✓</span>
@@ -884,7 +912,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 ElectroMaster Academy. Empowering the next generation of electronics engineers.</p>
+            <p>&copy; 2025 NyTutorr Academy. Empowering the next generation of electronics engineers.</p>
             <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.9rem;">
                 Specialized in VLSI Design | Signal Processing | Advanced Electronics
             </p>
@@ -910,9 +938,9 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(13, 18, 45, 0.98)';
+                header.style.background = 'rgb(33, 32, 32)';
             } else {
-                header.style.background = 'rgba(13, 18, 45, 0.95)';
+                header.style.background = 'rgb(33, 32, 32)';
             }
         });
 
